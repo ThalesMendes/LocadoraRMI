@@ -1,3 +1,4 @@
+import java.net.MalformedURLException;
 import java.rmi.*;
 
 public class Cliente {
@@ -45,4 +46,37 @@ public class Cliente {
     public void setAlocado(boolean alocado) {
         this.alocado = alocado;
     }
+    
+    public static void main(String[] args) { 
+        try { 
+            Cliente c = (Cliente) Naming.lookup("rmi://localhost/FilialService");  
+        } 
+        catch (MalformedURLException murle) { 
+            System.out.println(); 
+            System.out.println(
+              "MalformedURLException"); 
+            System.out.println(murle); 
+        } 
+        catch (RemoteException re) { 
+            System.out.println(); 
+            System.out.println(
+                        "RemoteException"); 
+            System.out.println(re); 
+        } 
+        catch (NotBoundException nbe) { 
+            System.out.println(); 
+            System.out.println(
+                       "NotBoundException"); 
+            System.out.println(nbe); 
+        } 
+        catch (
+            java.lang.ArithmeticException
+                                      ae) { 
+            System.out.println(); 
+            System.out.println(
+             "java.lang.ArithmeticException"); 
+            System.out.println(ae); 
+        } 
+    }    
 }
+
