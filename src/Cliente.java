@@ -3,9 +3,13 @@ import java.rmi.*;
 
 public class Cliente {
 
+    //identificador do cliente
     private int ID;
+    //nome do cliente
     private String nome;
+    //quanto de debito o cliente tem
     private int debito;
+    //se o cliente esta com um carro alugado
     private boolean alocado;
 
     public Cliente(int ID, String nome) {
@@ -15,34 +19,40 @@ public class Cliente {
         this.alocado = false;
     }
 
+    //retorna o ID do cliente
     public int getID() {
         return ID;
     }
 
+    //define o ID do cliente
     public void setID(int ID) {
         this.ID = ID;
     }
 
+    //retorna o nome do cliente
     public String getNome() {
         return nome;
     }
 
+    //define o nome do cliente
     public void setNome(String nome) {
         this.nome = nome;
     }
 
+    //retorna o debito do cliente
     public int getDebito() {
         return debito;
     }
 
+    //define o debito do cliente
     public void setDebito(int debito) {
         this.debito = debito;
     }
 
-    public boolean isAlocado() {
-        return alocado;
-    }
+    //retorna se o cliente esta com um carro alugado
+    public boolean isAlocado() { return alocado; }
 
+    //define se o cliente esta ou nao com um carro alugado
     public void setAlocado(boolean alocado) {
         this.alocado = alocado;
     }
