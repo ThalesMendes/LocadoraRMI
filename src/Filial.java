@@ -1,3 +1,4 @@
+import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.RMIClientSocketFactory;
 import java.rmi.server.RMIServerSocketFactory;
@@ -14,7 +15,18 @@ public class Filial extends UnicastRemoteObject implements Locadora {
 
     public Filial(int num) throws RemoteException {
         this.numCarros = num;
+       
     }
+    public Filial() throws RemoteException {
+        try {
+          Filial filial = new Filial(50);
+          Naming.rebind("rmi://localhost:1099/FilialService", filial);
+        } catch (Exception e) {
+            System.out.println("Exeção: " + e);
+        }
+   }
+    
+    
 
     public static int getNumCarros() {
         return numCarros;
@@ -64,4 +76,10 @@ public class Filial extends UnicastRemoteObject implements Locadora {
     public void pagamento(Cliente c) {
         c.setDebito(c.getDebito() - 1);
     }
+    
+  
+
+   public static void main(String args[]) throws RemoteException {
+     new Filial();
+   }
 }
