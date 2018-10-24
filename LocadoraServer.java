@@ -6,8 +6,8 @@ public class LocadoraServer {
     public LocadoraServer() {
         try {
             Locadora locadora = new LocadoraImpl();
-            Registry registro = LocateRegistry.createRegistry(1099);
-            registro.rebind("//localhost/locadoraService",locadora);
+            Registry registro = LocateRegistry.createRegistry(4444);
+            registro.rebind("//localhost/locadoraService", locadora);
         }catch (Exception e){
             System.out.println("Erro: " + e);
         }

@@ -57,36 +57,6 @@ public class Cliente {
         this.alocado = alocado;
     }
     
-    public static void main(String[] args) { 
-        try { 
-            Cliente c = (Cliente) Naming.lookup("rmi://localhost/FilialService");  
-        } 
-        catch (MalformedURLException murle) { 
-            System.out.println(); 
-            System.out.println(
-              "MalformedURLException"); 
-            System.out.println(murle); 
-        } 
-        catch (RemoteException re) { 
-            System.out.println(); 
-            System.out.println(
-                        "RemoteException"); 
-            System.out.println(re); 
-        } 
-        catch (NotBoundException nbe) { 
-            System.out.println(); 
-            System.out.println(
-                       "NotBoundException"); 
-            System.out.println(nbe); 
-        } 
-        catch (
-            java.lang.ArithmeticException
-                                      ae) { 
-            System.out.println(); 
-            System.out.println(
-             "java.lang.ArithmeticException"); 
-            System.out.println(ae); 
-        } 
-    }    
+public static void main(String[] args) { try { Locadora locadora = (Locadora) Naming.lookup("rmi://localhost/FilialService"); Scanner scan = new Scanner(System.in); System.out.println("DIGITE A OPCAO DESEJADA: \n 1 - Cadastrar novo cliente \t 2 - Acessar"); int opcao = scan.nextInt(); switch(opcao){ case 1: locadora.criarCliente(); break; case 2: break; default: System.out.println("OPCAO INVALIDA"); } } catch (MalformedURLException murle) { System.out.println(); System.out.println( "MalformedURLException"); System.out.println(murle); } catch (RemoteException re) { System.out.println(); System.out.println( "RemoteException"); System.out.println(re); } catch (NotBoundException nbe) { System.out.println(); System.out.println( "NotBoundException"); System.out.println(nbe); } catch ( java.lang.ArithmeticException ae) { System.out.println(); System.out.println( "java.lang.ArithmeticException"); System.out.println(ae); } }    
 }
 

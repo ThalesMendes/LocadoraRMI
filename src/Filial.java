@@ -42,7 +42,8 @@ public class Filial extends UnicastRemoteObject implements Locadora {
 
 
     //cria um cliente
-    public void criarCliente() {
+    @Override
+    public void criarCliente() throws RemoteException {
 
         int id;
         //funciona como um contador
@@ -70,7 +71,8 @@ public class Filial extends UnicastRemoteObject implements Locadora {
     }
 
     //faz a locação de um veiculo
-    public void locacao(Cliente c) {
+    @Override
+    public void locacao(Cliente c) throws RemoteException{
         //se o cliente  tiver com debito, tiver locado um carro ou não existe carros para serem emprestados sai da função
         if(c.getDebito() != 0 && c.isAlocado() && getNumCarros() > 0)
             return;
@@ -87,7 +89,7 @@ public class Filial extends UnicastRemoteObject implements Locadora {
     }
 
     //faz a devolucao de um veiculo
-    public void devolucao(Cliente c) {
+    public void devolucao(Cliente c) throws RemoteException{
         //define o alocado para falso
         c.setAlocado(false);
         //aumenta o numero de carros que podem ser emprestados
@@ -95,7 +97,7 @@ public class Filial extends UnicastRemoteObject implements Locadora {
     }
 
     //faz o pagamento do debito
-    public void pagamento(Cliente c) {
+    public void pagamento(Cliente c) throws RemoteException {
         c.setDebito(c.getDebito() - 1);
     }
     

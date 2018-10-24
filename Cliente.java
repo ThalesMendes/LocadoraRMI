@@ -74,15 +74,20 @@ public class Cliente implements Serializable {
 
     public static void main(String[] args) {
         try {
-            Registry registro = LocateRegistry.getRegistry(1099);
+            Registry registro = LocateRegistry.getRegistry(4444);
             Locadora locadora = (Locadora) registro.lookup("//localhost/locadoraService");
+			
+			//estrutura que guarda os novos clientes cadastrados
             ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+
             int i = 0;
             Scanner scan = new Scanner(System.in);
             System.out.println("DIGITE A OPCAO DESEJADA: \n 1 - Criar Cliente \t 2 - Cadastrar clientes existentes \t 3 - Listar Clientes \t 4 - Acessar com um cliente");
+
             int opcao = scan.nextInt();
             while(opcao != 0) {
                 switch (opcao) {
+					//Case 1: criar novo cliente
                     case 1:
                         System.out.println("DIGITE O NOME DO CLIENTE: ");
                         String n = scan.next();
@@ -90,11 +95,14 @@ public class Cliente implements Serializable {
                         clientes.add(cn);
                         i++;
                         break;
+
+					//Case 2: cadastrar na locadora todos os cliente existentes	
                     case 2:
                         System.out.println("VC DESEJA CADASTRAR?");
                         for(Cliente x: clientes){
                             System.out.println(x.getId() + "   " + x.getNome());
                         }
+
                         System.out.println("1 - SIM \t 2 - NAO");
                         int opcao2 = scan.nextInt();
                         if(opcao2 == 1){
@@ -103,17 +111,22 @@ public class Cliente implements Serializable {
                             }
                         }
                         break;
+
                     case 3:
+						//Case 3: listar cliente cadastrados na locadora
                         locadora.listarClientes();
                         break;
-                    case 4:
+                    
+					case 4:
+						//Case 4: Alugar ou devolver um veiculo
                         System.out.println("Por favor selecione o cliente desejado: ");
                         for(Cliente x: clientes){
                             System.out.println(x.getId() + "   " + x.getNome());
                         }
                         int opcao3 = scan.nextInt();
-                        Cliente clienteSelecionado = clientes.get(opcao3);
-                        System.out.println("O que voce deseja fazer?");
+
+                        Cliente clienteSelecionado = clientes.get(opcao3);   
+						System.out.println("O que voce deseja fazer?");
                         System.out.println("1 - ALUGAR VEICULO \t 2 - DEVOLVER VEICULO");
                         int opcao4 = scan.nextInt();
                         switch (opcao4){
@@ -135,6 +148,7 @@ public class Cliente implements Serializable {
                 opcao = scan.nextInt();
             }
 
+		//Pegando as exceções
         } catch (RemoteException re) {
             System.out.println();
             System.out.println(
