@@ -5,6 +5,13 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.io.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Cliente implements Serializable {
 
@@ -142,7 +149,7 @@ public class Cliente implements Serializable {
                         break;
 
                     case 5:
-                        //Caso 5: Imprimir os cliente
+                        //Caso 5: Imprimir os clientes
                         FileWriter arq = new FileWriter("clientes.txt");
                         PrintWriter gravarArq = new PrintWriter(arq);
                         for(Cliente x: clientes)
