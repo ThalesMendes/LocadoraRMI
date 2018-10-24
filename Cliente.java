@@ -140,7 +140,32 @@ public class Cliente implements Serializable {
                                     System.out.println("OPCAO INVALIDA");
                         }
                         break;
-                    default:
+                    case 5:
+                        //Caso 5: Imprimir os cliente
+                        FileWriter arq = new FileWriter("clientes.txt");
+                        PrintWriter gravarArq = new PrintWriter(arq);
+                        for(Cliente x: clientes)
+                            gravarArq.println(x.getId() + "   " + x.getNome());
+                        arq.close();
+                        System.out.println("Arquivo gravado com sucesso");
+                    }
+
+                    private void auxIdsCompleto(No start, PrintWriter gravarArq) throws IOException {
+                        if (start == null) {
+                            return;
+                        }
+                        if (start.isCriado()) {
+                            gravarArq.println(" ");
+                            gravarArq.println("CID : " + start.getCid());
+                        }
+                        if (!start.isCriado())
+                            gravarArq.print(start.getReg().getId() + ",");
+                        for (No busca : start.getFilhos())
+                            auxIdsCompleto(busca, gravarArq);
+                    }
+
+
+                        default:
                         System.out.println("OPCAO INVALIDA");
 
                 }
